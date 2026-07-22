@@ -1,98 +1,296 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Card Shuffling and Sorting Application (MERN Stack)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A full-stack web application that allows users to shuffle and sort a deck of cards using the MERN stack (MongoDB, Express.js, React, Node.js).
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- 🃏 Display a full deck of 52 playing cards
+- 🔀 Shuffle the deck using Fisher-Yates algorithm
+- 📊 Sort the deck using two different methods (by suit or by rank)
+- 🎲 Random sorting method selection on each sort request
+- 💾 Persistent deck state stored in MongoDB
+- 🎨 Responsive UI built with React functional components
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Tech Stack
 
-## Project setup
+### Backend
+- **Node.js** - JavaScript runtime
+- **Express.js** - Web framework
+- **MongoDB** - Database
+- **Mongoose** - ODM for MongoDB
+- **CORS** - Cross-origin resource sharing
 
-```bash
-$ yarn install
-```
+### Frontend
+- **React** - UI library (functional components + hooks)
+- **Axios** - HTTP client for API calls
+- **CSS3** - Styling and responsive design
 
-## Compile and run the project
+## Prerequisites
 
-```bash
-# development
-$ yarn run start
+- Node.js (v14 or higher)
+- Yarn (v1.22.22 or higher)
+- MongoDB (local installation or MongoDB Atlas account)
 
-# watch mode
-$ yarn run start:dev
+## Installation
 
-# production mode
-$ yarn run start:prod
-```
-
-## Run tests
+### Backend Setup
 
 ```bash
-# unit tests
-$ yarn run test
+# Navigate to the backend directory
+cd shuffle-api
 
-# e2e tests
-$ yarn run test:e2e
+# Install dependencies
+yarn install
 
-# test coverage
-$ yarn run test:cov
+# Create .env file and add your MongoDB URI
+echo "PORT=5000" > .env
+echo "MONGODB_URI=mongodb://localhost:27017/card_deck" >> .env
+
+# Start the backend server
+yarn dev
 ```
 
-## Deployment
+## Testing the API with Postman
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### Step 1: Start the backend server
 
 ```bash
-$ yarn install -g @nestjs/mau
-$ mau deploy
+# In your backend directory
+yarn dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+You should see:
+```
+Server running on port 5001
+MongoDB Connected: 127.0.0.1
+```
 
-## Resources
+### Step 2: Open Postman
 
-Check out a few resources that may come in handy when working with NestJS:
+Create a new collection called "Card Deck API" and add the following requests:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Step 3: Testing in Sequence
 
-## Support
+Test the endpoints in this order to see the full flow:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+#### 1. GET /api/deck - See initial deck
 
-## Stay in touch
+**Method:** `GET`  
+**URL:** `http://localhost:5000/api/deck`
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+**Expected Response:**
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "suit": "hearts",
+      "rank": "A",
+      "displayName": "A of hearts",
+      "value": 14
+    }
+  ],
+  "deckId": "65a1b2c3d4e5f6g7h8i9j0k1"
+}
+```
+
+#### 2. POST /api/deck/shuffle - Shuffle it
+
+**Method:** `POST`  
+**URL:** `http://localhost:5000/api/deck/shuffle`
+
+**Expected Response:**
+```json
+{
+  "success": true,
+  "message": "Deck shuffled successfully",
+  "data": [
+    // ... 52 cards in random order
+  ],
+  "deckId": "65a1b2c3d4e5f6g7h8i9j0k1"
+}
+```
+
+#### 3. GET /api/deck - See shuffled deck
+
+**Method:** `GET`  
+**URL:** `http://localhost:5000/api/deck`
+
+**Expected Response:** The shuffled deck in random order
+
+#### 4. POST /api/deck/sort - Sort it (method 1)
+
+**Method:** `POST`  
+**URL:** `http://localhost:5000/api/deck/sort`
+
+**Expected Response:**
+```json
+{
+  "success": true,
+  "message": "Deck sorted by suit",
+  "methodUsed": "suit",
+  "data": [
+    // ... cards sorted by suit (spades → hearts → diamonds → clubs)
+  ],
+  "deckId": "65a1b2c3d4e5f6g7h8i9j0k1"
+}
+```
+
+#### 5. GET /api/deck - See sorted deck
+
+**Method:** `GET`  
+**URL:** `http://localhost:5000/api/deck`
+
+**Expected Response:** The deck sorted by suit
+
+#### 6. POST /api/deck/sort - Sort again (method 2)
+
+**Method:** `POST`  
+**URL:** `http://localhost:5000/api/deck/sort`
+
+**Expected Response:**
+```json
+{
+  "success": true,
+  "message": "Deck sorted by rank",
+  "methodUsed": "rank",
+  "data": [
+    // ... cards sorted by rank (A → K → Q → J → 10 → ... → 2)
+  ],
+  "deckId": "65a1b2c3d4e5f6g7h8i9j0k1"
+}
+```
+
+#### 7. POST /api/deck/reset - Reset to original
+
+**Method:** `POST`  
+**URL:** `http://localhost:5000/api/deck/reset`
+
+**Expected Response:**
+```json
+{
+  "success": true,
+  "message": "Deck reset to original order",
+  "data": [
+    // ... original deck order
+  ],
+  "deckId": "65a1b2c3d4e5f6g7h8i9j0k1"
+}
+```
+
+### Testing with cURL (Alternative to Postman)
+
+If you don't have Postman, you can test using cURL in your terminal:
+
+```bash
+# 1. Get current deck
+curl http://localhost:5000/api/deck
+
+# 2. Shuffle deck
+curl -X POST http://localhost:5000/api/deck/shuffle
+
+# 3. Sort deck (random method)
+curl -X POST http://localhost:5000/api/deck/sort
+
+# 4. Reset deck
+curl -X POST http://localhost:5000/api/deck/reset
+```
+
+### Common Issues & Solutions
+
+#### Error: ECONNREFUSED
+```
+Error: connect ECONNREFUSED 127.0.0.1:5000
+```
+**Solution:** Make sure your backend is running (`yarn dev`)
+
+#### Error: MongoDB Connection Failed
+```
+Error: MongooseServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017
+```
+**Solution:** Make sure MongoDB is running:
+```bash
+# Start MongoDB (if installed locally)
+mongod
+
+# Or use MongoDB Atlas (cloud)
+# Update your .env file with Atlas URI
+```
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/deck` | Get current deck state |
+| POST | `/api/deck/shuffle` | Shuffle the deck |
+| POST | `/api/deck/sort` | Sort the deck (random method) |
+| POST | `/api/deck/reset` | Reset deck to original order |
+
+## Sorting Methods
+
+The application uses two different sorting methods:
+1. **Sort by Suit**: Orders cards by suit (spades → hearts → diamonds → clubs) then by rank
+2. **Sort by Rank**: Orders cards by rank (A → K → Q → J → 10 → ... → 2)
+
+Each time you click "Sort", a random sorting method is selected.
+
+## Project Structure
+
+```
+shuffle-api/
+├── src/
+│   ├── config/
+│   │   └── database.js      # MongoDB connection
+│   ├── controllers/
+│   │   └── deckController.js # Request handlers
+│   ├── models/
+│   │   └── Deck.js          # Deck schema
+│   ├── routes/
+│   │   └── deckRoutes.js    # API routes
+│   ├── services/
+│   │   └── deckService.js   # Business logic
+│   ├── utils/
+│   │   └── deckUtils.js     # Deck utilities (shuffle, sort)
+│   └── server.js            # Entry point
+├── .env                     # Environment variables
+├── package.json             # Dependencies
+└── yarn.lock
+```
+
+## Frontend Setup
+
+```bash
+# Navigate to the frontend directory
+cd ../frontend
+
+# Install dependencies
+yarn install
+
+# Start the React development server
+yarn dev
+```
+
+## Running the Full Application
+
+1. **Start MongoDB**:
+   ```bash
+   # For local MongoDB
+   mongod
+   
+   # Or use MongoDB Atlas (cloud)
+   ```
+
+2. **Start Backend**:
+   ```bash
+   cd shuffle-api
+   yarn dev
+   📍 Server running at: http://localhost:5001
+   ```
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+UNLICENSED - For assessment purposes only.
+
+## Author
+
+Thabang Gideon Magaola
